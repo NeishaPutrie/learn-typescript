@@ -9,3 +9,36 @@
  * 
  * display the student data using console.log.
  */
+
+type Student = {
+    id: string;
+    fullName: string;
+    age: number;
+    isActive: boolean;
+};
+
+// 2. Implement type on 3 students data
+const students: Student[] = [
+  {
+    id: "ST2026001",
+    fullName: "Ahmad Rizky",
+    age: 16,
+    isActive: true,
+  },
+  {
+    id: "ST2026002",
+    fullName: "Siti Nurhaliza",
+    age: 17,
+    isActive: true,
+  },
+  {
+    id: "ST2026003",
+    fullName: "Budi Santoso",
+    age: 16,
+    isActive: false,
+  },
+];
+
+// Display the student data
+console.log("=== STUDENT INFORMATION SYSTEM ===");
+console.log(students);
