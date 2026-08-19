@@ -21,3 +21,31 @@
  * 2. Store the temperature data in a single collection.
  * 3. Display the temperature data using console.log.
  */
+
+/**
+ * Smart Greenhouse - Hourly Temperature Logger
+ */
+
+// 1. Define a proper type for the temperature information
+interface SuhuReading {
+  waktu: string;      // format "HH:mm", misal "08:00"
+  suhu: number;        // dalam derajat Celcius
+}
+
+// 2. Store the temperature data in a single collection (array)
+const dataSuhu: SuhuReading[] = [
+  { waktu: "08:00", suhu: 24.5 },
+  { waktu: "09:00", suhu: 25.1 },
+  { waktu: "10:00", suhu: 26.8 },
+  { waktu: "11:00", suhu: 28.4 },
+  { waktu: "12:00", suhu: 30.2 },
+  { waktu: "13:00", suhu: 31.1 },
+  { waktu: "14:00", suhu: 30.7 },
+  { waktu: "15:00", suhu: 29.3 },
+];
+
+// 3. Display the temperature data
+console.log("=== Data Suhu Greenhouse Hari Ini ===");
+dataSuhu.forEach((data: SuhuReading) => {
+  console.log(`Jam ${data.waktu} : ${data.suhu}°C`);
+});

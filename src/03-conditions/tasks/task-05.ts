@@ -32,3 +32,40 @@
  *  - Implement the second screening only if the first screening is passed.
  *  - Display the correct result.
  */
+
+const studentName: string = "Fajar Hidayat";
+const GPAfajar: number = 3.86;
+const FamilyIncomeFajar: number = 4200000;
+const comptCountFajar: number = 4;
+const hasDisciplanaryRecord: boolean = false;
+const documentsComplete: boolean = true;
+
+let resultMessage: string;
+
+//* screening
+
+const passedFirstScreening: boolean = GPAfajar >= 3.75 && FamilyIncomeFajar < 5000000;
+
+//* 2nd screening
+if (passedFirstScreening) {
+    const passedSecondScreening: boolean =
+    comptCountFajar >= 3 && !hasDisciplanaryRecord && documentsComplete;
+
+if (passedSecondScreening) {
+    resultMessage = "Scholarship Approved";
+}   else {
+    resultMessage = "Passed First Screening, but failed second screening";
+}
+} else {
+    resultMessage = "Failed First Screening";
+}
+
+// display
+console.log("=== Scholarship Screening Result ===");
+console.log(`Student Name             : ${studentName}`);
+console.log(`GPA                      : ${GPAfajar}`);
+console.log(`Family Income            : Rp${FamilyIncomeFajar.toLocaleString("id-ID")}`);
+console.log(`Competition Count        : ${comptCountFajar}`);
+console.log(`Has Disciplinary Record  : ${hasDisciplanaryRecord ? "Yes" : "No"}`);
+console.log(`Documents Complete       : ${documentsComplete ? "Yes" : "No"}`);
+console.log(`Result                   : ${resultMessage}`);

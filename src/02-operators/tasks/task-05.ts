@@ -33,3 +33,61 @@
  * - Calculate the remaining scholarship budget.
  * - Display whether the student is accepted.
  */
+
+// === data ===
+const studentName: string = "Alya Putri";
+const GPA: number = 3.89;
+const familyIncome: number = 4200000;
+const competitionCount: number = 4;
+const hasDisciplinaryRecord: boolean = false;
+const documentsComplete: boolean = true;
+
+//=== syarat nyaaa ===
+const minGPA: number = 3.75;
+const maxFamilyIncome: number = 5000000;
+const minCompetitionCount: number = 3;
+
+//=== anggaran ===
+const scholarshipAmount: number = 12000000;
+const totalBudget: number = 500000000;
+
+//=== evaluasi syaratnyaa ===
+const isGPAokay: boolean = GPA >= minGPA;
+const isIncomeACC: boolean = familyIncome < maxFamilyIncome;
+const isCompetitionOkay: boolean = competitionCount >= minCompetitionCount;
+const isDisciplineClean: boolean = hasDisciplinaryRecord === false;
+const isDocumentComplete: boolean = documentsComplete === true;
+
+//=== gabungin kondisi pakai logical operator && ===
+const isEligible: boolean =
+    isGPAokay &&
+    isIncomeACC &&
+    isCompetitionOkay &&
+    isDisciplineClean &&
+    isDocumentComplete;
+
+//=== hitung nominal pakai ternary operator ===
+const finalScholarship: number = isEligible ? scholarshipAmount : 0;
+
+//=== hitung sisa budget ===
+const remainingBudget: number = totalBudget - finalScholarship;
+
+//=== tampilkan hasil ===
+const checks = [
+    { label: `GPA (>= ${minGPA})`, value: GPA, pass: isGPAokay },
+    { label: `Pendapatan (< Rp${maxFamilyIncome})`, value: `Rp${familyIncome}`, pass: isIncomeACC },
+    { label: `Kompetisi (>= ${minCompetitionCount})`, value: competitionCount, pass: isCompetitionOkay },
+    { label: "Bebas Pelanggaran", value: !hasDisciplinaryRecord, pass: isDisciplineClean },
+    { label: "Dokumen Lengkap", value: documentsComplete, pass: isDocumentComplete },
+];
+
+console.log("=== Hasil Seleksi Beasiswa ===");
+console.log(`Nama Mahasiswa : ${studentName}`);
+checks.forEach(({ label, value, pass }) =>
+    console.log(`${label.padEnd(28)}: ${value} -> ${pass}`)
+);
+console.log("-------------------------------");
+console.log(`Status Diterima         : ${isEligible ? "DITERIMA" : "TIDAK DITERIMA"}`);
+console.log(`Jumlah Beasiswa         : Rp${finalScholarship}`);
+console.log(`Sisa Budget Universitas : Rp${remainingBudget}`);
+

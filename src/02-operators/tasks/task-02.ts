@@ -14,3 +14,18 @@
  * Task: Store and display the result in a variable named "isEligible"
 
  */
+
+const finalScore: number = 80;
+const Attendance: number = 94;
+const tuitionPaid: boolean = true;
+
+const isEligible: boolean =
+    finalScore >= 75 && Attendance >= 90 && tuitionPaid;
+
+console.log("==== Kelayakan Wisuda ====");
+console.log(`Nilai Ahkir     : ${finalScore}  (syarat : >= 75) `);
+console.log(`Kehadiran       : ${Attendance}% (syarat : >= 90%)`);
+console.log(`Lunas SPP       : ${tuitionPaid ? "Ya" : "Belum"}`);
+console.log("-----------------------------");
+console.log(`Layak wisuda : ${isEligible ? "Layak" : "Tidak layak"}`);
+

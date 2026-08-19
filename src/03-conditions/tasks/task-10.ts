@@ -45,3 +45,42 @@ Student Tasks
 - Use nested conditional statements.
 - Display the final registration result.
  */
+
+const studentName: string = "Nadia Putri";
+const isActiveStudent: boolean = true;
+const isTuitionPaid: boolean = true;
+const passedProgrammingFundamentals: boolean = true;
+const passedDatabaseSystems: boolean = true;
+const GPA: number = 3.45;
+const areSeatsAvailable: boolean = false;
+
+let registrationResult: string;
+
+if (!isActiveStudent || !isTuitionPaid) {
+    registrationResult = "Registration Rejected";
+}   else {
+
+    const meetsAcademicRequirements: boolean =
+    passedProgrammingFundamentals && passedDatabaseSystems && GPA >= 3.2;
+
+    if (!meetsAcademicRequirements) {
+        registrationResult = "Academic Requirements Not Met";
+    } else {
+
+        if (areSeatsAvailable) {
+            registrationResult = "Registration Successful";
+        } else {
+            registrationResult = "Added to Waiting List.";
+        }
+    }
+}
+
+console.log("=== Course Registration Result ===");
+console.log(`Student Name                    : ${studentName}`);
+console.log(`Active Student                  : ${isActiveStudent ? "Yes" : "No"}`);
+console.log(`Tuition Paid                    : ${isTuitionPaid ? "Yes" : "No"}`);
+console.log(`Passed Programming Fundamentals : ${passedProgrammingFundamentals ? "Yes" : "No"}`);
+console.log(`Passed Database Systems         : ${passedDatabaseSystems ? "Yes" : "No"}`);
+console.log(`GPA                              : ${GPA}`);
+console.log(`Seats Available                 : ${areSeatsAvailable ? "Yes" : "No"}`);
+console.log(`Result                          : ${registrationResult}`);

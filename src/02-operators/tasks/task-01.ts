@@ -14,3 +14,31 @@
  *  - Final payment
  * 2. Display the calculation results.
  */
+
+/**
+**/          
+       
+const friedRicePrice: number = 18000;
+const friedRiceQty: number = 3;
+
+const waterPrice: number = 5000;
+const waterQty: number = 2;
+
+const studentCouncilDiscount: number = 10000;
+
+// 1. Calculations using operators
+const totalFriedRice: number = friedRicePrice * friedRiceQty;   // 18000 * 3
+const totalDrinks: number = waterPrice * waterQty;              // 5000 * 2
+const grandTotal: number = totalFriedRice + totalDrinks;        // before discount
+const finalPayment: number = grandTotal - studentCouncilDiscount;
+
+// 2. Display results
+console.log("=== Cafeteria Receipt ===");
+console.log(`Fried Rice   : ${friedRiceQty} x Rp${friedRicePrice.toLocaleString("id-ID")} = Rp${totalFriedRice.toLocaleString("id-ID")}`);
+console.log(`Mineral Water: ${waterQty} x Rp${waterPrice.toLocaleString("id-ID")} = Rp${totalDrinks.toLocaleString("id-ID")}`);
+console.log("-------------------------");
+console.log(`Total (before discount) : Rp${grandTotal.toLocaleString("id-ID")}`);
+console.log(`Student Council Discount: -Rp${studentCouncilDiscount.toLocaleString("id-ID")}`);
+console.log("-------------------------");
+console.log(`Final Amount to Pay     : Rp${finalPayment.toLocaleString("id-ID")}`);
+
