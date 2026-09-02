@@ -1,3 +1,6 @@
+import { log } from "node:console";
+import { Socket } from "node:dgram";
+
 /**
  * Teacher has list of student score:
  */
@@ -23,21 +26,27 @@ const scores = [85, 72, 91, 64, 88];
 
  * Instead of creating different looping functions, create one reusable 
  * function that receives the processing logic as a callback.
- */
+ */  
 
 function processScores(
     scores: number[],
     callback: (score: number) => void
 ): void {
-    // implementation
-}
+    for (let i = 0; i < scores.length; i++) {
+        callback(scores[i]);
+    }
+} 
 
 function printScore(score: number) {
-    // implementation
+   console.log(`Score: ${score}`);
 }
 
 function showGrade(score: number) {
-    // implementation
+    let grade = `D`;
+    if(score >=90) grade = `A`;
+    if(score >=80 && score < 90) grade = `B`;
+    if(score >=70 && score < 80) grade = `C`;
+    console.log(`Grade for score ${score} is ${grade}`);
 }
 
 

@@ -30,7 +30,7 @@ const scores = [
 ];
 
 function findHighestScore(scores: number[]): number {
-
+    
 }
 
 function findLowestScore(scores: number[]): number {

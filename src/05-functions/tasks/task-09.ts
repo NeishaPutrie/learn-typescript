@@ -11,7 +11,7 @@
  * - Total hospital revenue
  * - Names of admitted patients
  * 
- * Student Tasks
+ * Student Tasks 
  * Design a program using multiple reusable functions.
  * 
  * Requirements
@@ -21,7 +21,17 @@
  * - printHospitalReport() must only display results.
  * - No duplicated calculations.
  */
-const patients = [
+
+interface Patient {
+    id: string;
+    name: string;
+    age: number;
+    department: string;
+    admitted: boolean;
+    bill: number;
+}
+
+const patients: Patient[] = [
     {
         id: "PT001",
         name: "Alya",
@@ -63,3 +73,14 @@ const patients = [
         bill: 350000
     }
 ];
+
+function getTotalPatients(data: Patient[]): Number {
+    return data.length;
+}
+
+function getAdmittedPatients(data: Patient[]): Patient[] {
+    return data.filter(patient => patient.admitted === true);
+} 
+
+function getDischargedPatients(data:
+

@@ -39,42 +39,72 @@ const students = [
   }
 ];
 
-interface Student {
-  name: string;
-  major: string;
-  active: boolean
+function countActiveStudents(
+  students: { name: string; major: string; active: boolean}[]
+){
+  let MahasiswaAktif: number = 0;
+
+  for (let i = 0; i < students.length; i++) {
+    let aktif = students[i];
+
+    if(aktif.active) {
+      MahasiswaAktif++;
+    }
+  }
+  return MahasiswaAktif;
 }
 
-const students: Student[] = [
-  { name: "Alya", major: "Software Engineering", active: true },
-  { name: "Budi", major: "Networking", active: false },
-  { name: "Citra", major: "Software Engineering", active: true },
-  { name: "Dimas", major: "Multimedia", active: true },
-  { name: "Eka", major: "Networking", active: false }
-];
+function CountInactiveStudents(
+  students: { name: string; major: string; active: boolean}[]
+) {
+  let MahasiswaNonAktif: number = 0;
 
-function countActiveStudents(students: Student[]): number {
-    return students.filter(s => s.active).length;
+  for(let i = 0; i < students.length; i++) {
+    let nonAktif = students[i];
+
+    if (!nonAktif.active) {
+      MahasiswaNonAktif++;
+    }
+  }
+
+  return MahasiswaNonAktif;
 }
 
-function countInactiveStudents(students: Student[]): number {
-  return students.filter(s => !s.active).length;
+function countStudentsBymajor(
+  students: { name: string; major: string; active: boolean} [],
+  major: string
+) {
+  let count: number = 0;
+
+  for (let i = 0; i < students.length; i++) {
+    if(students[i].major === major) {
+      count++;
+    }
+  }
+
+  return count;
 }
 
-function countStudentsByMajor(students: Student[], major: string): number {
-  return students.filter(s => s.major === major).length;
+function printEnrollmentReport() {
+  console.log("Enrollment Report  : ");
+  console.log("Total Students :" + students.length);
+  console.log("Active students : " + countActiveStudents(students));
+  console.log("Inactive students : " + countActiveStudents(students));
+
+  console.log(
+    "Software Engineering students  : " +
+    countStudentsBymajor(students, "Software Engineering")
+  );
+
+  console.log(
+    "Networking students : " + 
+    countStudentsBymajor(students, "Networking")
+  );
+
+  console.log(
+    "Multimedia students : " +
+    countStudentsBymajor(students, "Multimedia")
+  );
 }
 
-function printEnrollmentReport(students: Student[], major: string): number {
-  return students.filter(s => s.major === major).length;  
-  console.log("=== University Enrollment Report ===");
-  console.log(`Total students        : ${students.length}`);
-  console.log(`Active students       : ${countActiveStudents(students)}`);
-  console.log(`Inactive students     : ${countInactiveStudents(students)}`);
-  console.log(`Software Engineering  : ${countStudentsByMajor(students, "Software Engineering")}`);
-  console.log(`Networking            : ${countStudentsByMajor(students, "Networking")}`);
-  console.log(`Multimedia            : ${countStudentsByMajor(students, "Multimedia")}`);
-}
-
-
-
+printEnrollmentReport();

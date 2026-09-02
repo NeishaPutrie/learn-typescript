@@ -92,3 +92,5 @@ const enrollments = [
         duration: 20
     }
 ];
+
+function 

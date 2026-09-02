@@ -21,3 +21,5 @@ const products = [
  * 
  * Instead of creating a separate loop for every operation, the developer creates a reusable processing function.
  */
+
+function processProd
