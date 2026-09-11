@@ -7,7 +7,32 @@
  * 4. Calculate the total revenue from completed orders.
  * 5. Find all products that have been purchased.
  */
-const orders = [
+
+import { it } from "node:test"
+
+type OrderItem = {
+    product: string
+    price: number
+    quantity: number
+}
+
+type Order = {
+    id: number
+    customer: string
+    status: "completed" | "Cancelled" | "Pending"
+    items: OrderItem[]
+}
+
+type OrderWithTotal = Order & {
+    total : number
+}
+
+type CustomerSpending = {
+    customer: string
+    total: number
+}
+
+const orders: Order[] = [
     {
         id: 101,
         customer: "Andi",
@@ -35,3 +60,18 @@ const orders = [
         ],
     },
 ];
+
+function getCompletedOrders() {
+     const completed = orders.filter(order => order.status === "completed");
+    return completed;
+}
+
+function calculateOrderTotals() {
+    const ordersWithTotal = orders.map(orders => {
+        let total = 0;
+        for (let i = 0; i < order.items.length; i++) {
+            const item = order.items[i];
+            total = total + (item.price * item.quantity);
+        }
+    })
+}

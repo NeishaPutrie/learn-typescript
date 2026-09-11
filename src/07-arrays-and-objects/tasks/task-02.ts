@@ -8,7 +8,15 @@
  * 5. Sort available products from most expensive → cheapest.
  */
 
-const products = [
+type Product = {
+    id: number
+    name: string
+    category: string
+    price: number
+    stock: number
+}
+
+const products: Product[] = [
     {
         id: 1,
         name: "Keyboard",
@@ -43,5 +51,5 @@ const products = [
         category: "Audio",
         price: 850000,
         stock: 3,
-    },
-];
+    }
+]

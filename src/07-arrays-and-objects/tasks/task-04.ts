@@ -11,7 +11,13 @@
  * 4. Find expensive product ( > 1.000.000)
  */
 
-const cart = [
+type CartItem = {
+    product: string
+    price: number
+    quantity: number
+}
+
+const cart: CartItem[] = [
     {
         product: "Keyboard",
         price: 350000,
@@ -28,3 +34,50 @@ const cart = [
         quantity: 1,
     },
 ];
+
+// ount subtotal of all products
+function calculateSubtotal(cart: CartItem[]): number {
+    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+}
+
+// Task 2: Calculate discount
+function calculateDiscount(subtotal: number): number {
+    if (subtotal >= 3000000) {
+        return subtotal * 0.10;
+    } else if (subtotal >= 2000000) {
+        return subtotal * 0.05;
+    } else {
+        return 0;
+    }
+}
+
+// Task 3: Calculate final subtotal after discount
+function calculateFinalTotal(subtotal: number, discount: number): number {
+    return subtotal - discount;
+}
+
+// Task 4: Find expensive product (> 1.000.000)
+function findExpensiveProducts(cart: CartItem[]): CartItem[] {
+    return cart.filter(item => item.price > 1000000);
+}
+
+// Execute tasks
+const subtotal = calculateSubtotal(cart);
+const discount = calculateDiscount(subtotal);
+const finalTotal = calculateFinalTotal(subtotal, discount);
+const expensiveProducts = findExpensiveProducts(cart);
+
+console.log(`====== TASK 1: Subtotal ======`);
+console.log(`Subtotal: Rp${subtotal.toLocaleString('id-ID')}`);
+
+
+console.log(`\n====== TASK 2: Discount ======`);
+console.log(`Discount: Rp${discount.toLocaleString('id-ID')} (10%)`);
+
+
+console.log(`\n====== TASK 3: Final Total ======`);
+console.log(`Final Total: Rp${finalTotal.toLocaleString('id-ID')}`);
+
+
+console.log(`\n====== TASK 4: Expensive Products (> Rp1.000.000) ======`);
+console.log(expensiveProducts);

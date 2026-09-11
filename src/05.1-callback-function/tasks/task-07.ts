@@ -27,6 +27,76 @@
  * - It should only process the students and execute the callback.
  */
 
+type Student = {
+    name: string
+    score: number
+    attendance: number
+}
+
+
+type PASS_FAIL_STATUS = "Pass" | "Fail"
+type PERFORMANCE_CATEGORY = "Excellent" | "Good" | "Needs Improvement"
+type ATTENDANCE_STATUS = "Good" | "Needs Improvement"
+type RECOMMENDATION = "Excellent" | "Good" | "Improve Attendance" | "Improve Academic Performance"
+
+type StudentPassFail = Student & { status: PASS_FAIL_STATUS }
+type StudentPerformance = Student & { category: PERFORMANCE_CATEGORY }
+type StudentAttendance = Student & { attendanceStatus: ATTENDANCE_STATUS }
+type StudentRecommendation = Student & { recommendation: RECOMMENDATION }
+
+
+function getPerformanceCategory(student: Student): StudentPerformance {
+    let category: PERFORMANCE_CATEGORY;
+    
+    if (student.score >= 90) {
+        category = "Excellent";
+    } else if (student.score >= 75) {
+        category = "Good";
+    } else {
+        category = "Needs Improvement";
+    }
+    
+    return {
+        ...student,
+        category
+    };
+}
+
+function getAttendanceStatus(student: Student): StudentAttendance {
+    const attendanceStatus: ATTENDANCE_STATUS = student.attendance >= 90 ? "Good" : "Needs Improvement";
+    
+    return {
+        ...student,
+        attendanceStatus
+    };
+}
+
+function getFinalRecommendation(student: Student): StudentRecommendation {
+    let recommendation: RECOMMENDATION;
+    
+    if (student.score >= 90 && student.attendance >= 90) {
+        recommendation = "Excellent";
+    } else if (student.score >= 75 && student.attendance >= 90) {
+        recommendation = "Good";
+    } else if (student.score >= 75 && student.attendance < 90) {
+        recommendation = "Improve Attendance";
+    } else {
+        recommendation = "Improve Academic Performance";
+    }
+    
+    return {
+        ...student,
+        recommendation
+    };
+}
+
+function processStudents<T>(
+    arr: Student[],
+    callback: (student: Student) => T
+): T[] {
+    return arr.map(student => callback(student));
+}
+
 const students = [
     { name: "Alya", score: 92, attendance: 96 },
     { name: "Budi", score: 68, attendance: 88 },

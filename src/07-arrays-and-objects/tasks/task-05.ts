@@ -7,7 +7,17 @@
  * 4. Calculate class's average score
  */
 
-const students = [
+type Student = {
+    id: number
+    name: string
+    answers: string[]
+}
+
+type StudentWithScore = Student & {
+    score: number
+}
+
+const students: Student[] = [
     {
         id: 1,
         name: "Andi",
@@ -25,4 +35,57 @@ const students = [
     },
 ];
 
-const correctAnswers = ["A", "B", "C", "A", "B"];
+const correctAnswers: string[] = ["A", "B", "C", "A", "B"];
+
+// Task 1: Calculate student score (each correct answer = 20 points)
+function calculateStudentScore(student: Student, correctAnswers: string[]): StudentWithScore {
+    const correctCount = student.answers.filter((answer, index) => answer === correctAnswers[index]).length;
+    const score = correctCount * 20;
+    
+    return {
+        ...student,
+        score
+    };
+}
+
+// Helper: Get all students with their scores
+function getAllStudentsWithScores(students: Student[], correctAnswers: string[]): StudentWithScore[] {
+    return students.map(student => calculateStudentScore(student, correctAnswers));
+}
+
+// Task 2: Get students that pass (score > 70)
+function getPassingStudents(studentScores: StudentWithScore[]): StudentWithScore[] {
+    return studentScores.filter(student => student.score > 70);
+}
+
+// Task 3: Find student who reach highest score
+function findHighestScoreStudent(studentScores: StudentWithScore[]): StudentWithScore | undefined {
+    return studentScores.reduce((max, student) => student.score > max.score ? student : max);
+}
+
+// Task 4: Calculate class's average score
+function calculateAverageScore(studentScores: StudentWithScore[]): number {
+    const totalScore = studentScores.reduce((sum, student) => sum + student.score, 0);
+    return totalScore / studentScores.length;
+}
+
+// Execute tasks
+const studentScores = getAllStudentsWithScores(students, correctAnswers);
+
+console.log(`====== TASK 1: Student Scores ======`);
+console.log(studentScores);
+
+
+console.log(`\n====== TASK 2: Passing Students (Score > 70) ======`);
+const passingStudents = getPassingStudents(studentScores);
+console.log(passingStudents);
+
+
+console.log(`\n====== TASK 3: Highest Score Student ======`);
+const highestStudent = findHighestScoreStudent(studentScores);
+console.log(highestStudent);
+
+
+console.log(`\n====== TASK 4: Class Average Score ======`);
+const averageScore = calculateAverageScore(studentScores);
+console.log(`Average Score: ${averageScore.toFixed(2)}`);
