@@ -30,17 +30,50 @@ const scores = [
 ];
 
 function findHighestScore(scores: number[]): number {
-    
+  let highest = scores[0];
+
+  for (let i = 1; i < scores.length; i++) {
+    if (scores[i] > highest) {
+      highest = scores[i];
+    }
+  }
+
+  return highest;
 }
 
+// 2. Mencari nilai terendah
 function findLowestScore(scores: number[]): number {
+  let lowest = scores[0];
 
+  for (let i = 1; i < scores.length; i++) {
+    if (scores[i] < lowest) {
+      lowest = scores[i];
+    }
+  }
+
+  return lowest;
 }
 
+// 3. Menghitung rata-rata
 function calculateAverage(scores: number[]): number {
-    
+  let total = 0;
+
+  for (let i = 0; i < scores.length; i++) {
+    total = total + scores[i];
+  }
+
+  return total / scores.length;
 }
 
+// 4. Menghitung jumlah siswa yang lulus
 function countPassedStudents(scores: number[]): number {
+  let passed = 0;
 
+  for (let i = 0; i < scores.length; i++) {
+    if (scores[i] >= 75) {
+      passed++;
+    }
+  }
+
+  return passed;
 }
