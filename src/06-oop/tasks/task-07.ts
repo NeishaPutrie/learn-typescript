@@ -28,7 +28,7 @@ class Employee {
         public name: string,
         public employeeID: string,
         protected basicSalary: number
-    ) { }
+    ) {}
 
     calculateSalary(): number {
         return this.basicSalary
@@ -36,21 +36,48 @@ class Employee {
 }
 
 class FullTimeEmployee extends Employee {
+    allowance: number;
+
+    constructor(
+    name: string,
+    employeeId: string,
+    basicSalary: number,
+    allowance: number
+    ){
+        super(name, employeeId, basicSalary);
+        this.allowance = allowance;
+    }
+
     calculateSalary(): number {
-        return 0
+        return this.basicSalary + this.allowance;
     }
 }
 
 class PartTimeEmployee extends Employee {
+    hoursWorked: number;
+    hourlyRate: number;
+
+    constructor(
+    name: string,
+    employeeID: string,
+    basicSalary: number,
+    hoursWorked: number,
+    hourlyRate: number
+  ) {
+    super(name, employeeID, basicSalary);
+    this.hoursWorked = hoursWorked;
+    this.hourlyRate = hourlyRate;
+  }
+
     calculateSalary(): number {
-        return 0
+        return this.basicSalary + (this.hoursWorked * this.hourlyRate);
     }
 }
 
 /** implement of polymorphism */
 const employees: Employee[] = [
-    new FullTimeEmployee(`Mohamed Salah`, `111`, 8000000),
-    new PartTimeEmployee(`Erling Haaland`, `112`, 2000000)
+    new FullTimeEmployee(`Mohamed Salah`, `111`, 800000, 1500000),
+    new PartTimeEmployee(`Erling Haaland`, `112`, 2000000, 40, 50000)
 ]
 
 for (const employee of employees) {

@@ -50,7 +50,7 @@ class DigitalWallet {
         this.Balance = initialBalance;
     }
 
-    deposit(amount: number number): void {
+    deposit(amount: number): void {
         if (amount <= 0) {
             console.log(`Deposit failed! amount must more than 0.`);
             return;

@@ -34,6 +34,88 @@
  * for get value of package weight
  */
 
+class Shipping {
+  private packageWeight: number;
+
+  constructor(
+    public trackingNumber: string,
+    public destination: string,
+    packageWeight: number
+  ){
+    this.packageWeight = packageWeight;
+  }
+  calculateCost(): number {
+    return 0;
+  }
+  getWeight(): number {
+    return this.packageWeight;
+  }
+}
+
+class RegularShipping extends Shipping {
+  constructor(
+    trackingNumber: string,
+    destination: string,
+    packageWeight: number
+  ){
+    super(trackingNumber, destination, packageWeight);
+  }
+
+  calculateCost(): number {
+    // 10000 per kg
+    return this.getWeight() * 10000;
+  }
+}
+
+class ExpressShipping extends Shipping {
+  constructor(
+    trackingNumber: string,
+    destination   : string,
+    packageWeight : number
+  ){
+    super(trackingNumber, destination, packageWeight);
+  }
+
+  calculateCost(): number {
+    return this.getWeight() * 20000;
+  }
+}
+
+class SameDayShipping extends Shipping {
+  constructor(
+    trackingNumber: string,
+    destination   : string,
+    packageWeight : number
+  ){
+    super(trackingNumber, destination, packageWeight);
+  }
+
+  calculateCost(): number {
+    return this.getWeight() * 30000;
+  }
+}
+
+class InternationalShipping extends Shipping {
+  constructor(
+    trackingNumber  : string,
+    destination     : string,
+    packageWeight   : number
+  ) {
+    super(trackingNumber, destination, packageWeight);
+  }
+
+  calculateCost(): number {
+    // 100000 per kg
+    return this.getWeight() * 100000;
+  }
+}
+
+const regularShipping = new RegularShipping("REG001", "Malang", 3);
+const expressShipping = new ExpressShipping("EXP001", "Surabaya", 2);
+const sameDayShipping = new SameDayShipping("SMD001", "Jakarta", 4);
+const internationalShipping = new InternationalShipping("INT001", "Singapore", 5);
+
+
 const shipments: Shipping[] = [
   regularShipping,
   expressShipping,

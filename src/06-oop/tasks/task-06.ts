@@ -43,3 +43,96 @@ class Person {
         console.log(`${this.name}, ${this.age} years old`);
     }
 }
+
+class Student extends Person {
+    studentID: string;
+    grade: number;
+
+    constructor(
+        name: string,
+        age: number,
+        studentId: string,
+        grade: number
+    ) {
+        super(name, age);
+        this.studentID = studentId;
+        this.grade = grade;
+    }
+
+    showInfo(): void {
+    console.log(`Student Name: ${this.name}`);
+    console.log(`Age: ${this.age}`);
+    console.log(`Student ID: ${this.studentID}`);
+    console.log(`Grade: ${this.grade}`);
+    }
+}
+
+class Teacher extends Person {
+    employeeId: string;
+    subject: string;
+
+    constructor(
+        name: string,
+        age: number,
+        employeeId: string,
+        subject: string
+    ){
+        super(name, age);
+        this.employeeId = employeeId;
+        this.subject = subject;
+    }
+
+    showInfo(): void {
+    console.log(`Teacher Name: ${this.name}`);
+    console.log(`Age: ${this.age}`);
+    console.log(`Employee ID: ${this.employeeId}`);
+    console.log(`Subject: ${this.subject}`);
+    }
+}
+
+const student1 = new Student(
+    "Kylian Mbappe",
+    17,
+    "ST001",
+    11
+);
+
+console.log("=== STUDENT 1 ===");
+student1.showInfo();
+
+console.log();
+
+const student2 = new Student(
+  "Erling Haaland",
+  22,
+  "ST002",
+  12
+);
+
+console.log("=== STUDENT 2 ===");
+student2.showInfo();
+
+console.log();
+
+const teacher1 = new Teacher(
+  "Cristiano Ronaldo",
+  38,
+  "EMP001",
+  "Programming"
+);
+
+console.log("=== TEACHER 1 ===");
+teacher1.showInfo();
+
+console.log();
+
+// Teacher 2
+const teacher2 = new Teacher(
+  "Zinedine Zidane",
+  50,
+  "EMP002",
+  "Mathematics"
+);
+
+console.log("=== TEACHER 2 ===");
+teacher2.showInfo();
